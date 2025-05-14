@@ -1,0 +1,284 @@
+/* Couleurs */
+.booking-blue {
+    -fx-background-color: #003580;
+}
+.booking-orange {
+    -fx-background-color: #feba02;
+}
+.booking-light-gray {
+    -fx-background-color: #f7f7f7;
+}
+
+/* En-tête */
+.header-box {
+    -fx-background-color: #003580;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Barre de recherche */
+.search-box {
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+    -fx-background-color: #f2f2f2;
+    -fx-alignment: center;
+}
+.search-field {
+    -fx-pref-width: 200px;
+}
+.search-button {
+    -fx-background-color: #0071c2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+}
+
+.search-button:hover {
+    -fx-background-color: #005999;
+}
+
+/* Contenu principal */
+.main-container {
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+}
+.content-container {
+    -fx-spacing: 20px;
+}
+
+/* Filtres */
+.filters-panel {
+    -fx-min-width: 200px;
+    -fx-padding: 10px;
+    -fx-background-color: #f8f9fa;
+    -fx-spacing: 15px;
+}
+.filter-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.filter-group {
+    -fx-spacing: 5px;
+}
+
+/* Tableau des résultats */
+.results-table {
+    -fx-min-width: 600px;
+}
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+.table-row-cell:selected {
+    -fx-background-color: #0071c2;
+    -fx-text-fill: white;
+}
+
+.hotel-cards {
+    -fx-spacing: 15px;
+    -fx-padding: 10px;
+}
+
+.hotel-card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-max-width: 600px;
+    -fx-background-radius: 5px;
+}
+
+.hotel-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 3);
+}
+
+.hotel-image {
+    -fx-fit-width: 200px;
+    -fx-fit-height: 150px;
+    -fx-preserve-ratio: true;
+}
+
+.hotel-info {
+    -fx-spacing: 5px;
+}
+
+.hotel-name {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.hotel-location {
+    -fx-text-fill: #666;
+}
+
+.hotel-price {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0071c2;
+}
+
+.hotel-rating {
+    -fx-padding: 5px 10px;
+    -fx-background-color: #003580;
+    -fx-text-fill: white;
+    -fx-background-radius: 3px;
+}
+
+.hotel-amenities {
+    -fx-spacing: 5px;
+}
+
+.amenity-tag {
+    -fx-padding: 3px 8px;
+    -fx-background-color: #e6f2ff;
+    -fx-text-fill: #0071c2;
+    -fx-background-radius: 3px;
+}
+
+/* Bus Card Styles */
+.bus-card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+}
+
+.bus-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 3);
+}
+
+.card-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+}
+
+.card-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.reserver-button {
+    -fx-background-color: #0071c2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 4px;
+}
+
+.reserver-button:hover {
+    -fx-background-color: #005999;
+}
+
+.reserver-button:disabled {
+    -fx-background-color: #cccccc;
+    -fx-opacity: 0.7;
+}
+
+.card-container {
+    -fx-background-color: #f8f9fa;
+}
+
+.card-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.card-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Search Box Styles */
+.search-box {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+    -fx-background-radius: 4px;
+}
+
+.search-field {
+    -fx-min-width: 200px;
+}
+
+/* Header Styles */
+.header-box {
+    -fx-background-color: #003580;
+    -fx-padding: 20px;
+}
+
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Footer Styles */
+.footer-box {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.footer-message {
+    -fx-text-fill: #666666;
+    -fx-font-size: 12px;
+}
+
+/* Dialog Styles */
+.dialog-pane {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #003580;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button {
+    -fx-background-color: #0071c2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #005999;
+}
+
+.dialog-pane .button.cancel-button {
+    -fx-background-color: #6c757d;
+}
+
+.dialog-pane .button.cancel-button:hover {
+    -fx-background-color: #5a6268;
+}
+
+/* Styles pour les labels de prix */
+.small-text {
+    -fx-font-size: 10px;
+    -fx-text-fill: #666;
+}
+
+.price-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2980b9;
+    -fx-font-size: 14px;
+}
+
+/* Bouton d'urgence */
+.emergency-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+}
+
+.emergency-button:hover {
+    -fx-background-color: #c0392b;
+}

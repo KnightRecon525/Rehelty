@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.image.*?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.Controller.RechercheController"
+            stylesheets="@styles.css">
+
+    <!-- En-tête (Bleu Booking) -->
+    <top>
+        <VBox>
+            <HBox styleClass="header-box" alignment="CENTER">
+                <Label text="Trouvez votre hôtel idéal en Tunisie" styleClass="header-title"/>
+            </HBox>
+            
+            <!-- Barre de navigation avec les villes populaires -->
+            <ScrollPane styleClass="cities-scrollpane" hbarPolicy="ALWAYS" vbarPolicy="NEVER">
+                <HBox fx:id="citiesContainer" spacing="10" styleClass="cities-container">
+                    <!-- Villes ajoutées dynamiquement -->
+                </HBox>
+            </ScrollPane>
+        </VBox>
+    </top>
+
+    <!-- Barre de recherche -->
+    <center>
+        <VBox styleClass="main-container">
+            <HBox styleClass="search-box">
+                <!-- Destination -->
+                <VBox styleClass="search-field-container">
+                    <Label text="Destination" styleClass="search-label"/>
+                    <ComboBox fx:id="destinationCombo" promptText="Où allez-vous ?" styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                </VBox>
+
+                <!-- Dates -->
+                <VBox styleClass="search-field-container">
+                    <Label text="Arrivée" styleClass="search-label"/>
+                    <DatePicker fx:id="checkInDate" promptText="Arrivée" styleClass="date-picker"/>
+                </VBox>
+                
+                <VBox styleClass="search-field-container">
+                    <Label text="Départ" styleClass="search-label"/>
+                    <DatePicker fx:id="checkOutDate" promptText="Départ" styleClass="date-picker"/>
+                </VBox>
+
+                <!-- Voyageurs -->
+                <VBox styleClass="search-field-container">
+                    <Label text="Voyageurs" styleClass="search-label"/>
+                    <ComboBox fx:id="guestsCombo" promptText="Voyageurs" styleClass="guests-combo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="1 adulte"/>
+                                <String fx:value="2 adultes"/>
+                                <String fx:value="2 adultes, 1 enfant"/>
+                                <String fx:value="2 adultes, 2 enfants"/>
+                                <String fx:value="Groupe"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </VBox>
+
+                <!-- Bouton Rechercher -->
+                <Button fx:id="searchButton" text="Rechercher" styleClass="search-button" onAction="#handleSearch"/>
+            </HBox>
+
+            <!-- Contenu principal -->
+            <HBox styleClass="content-container">
+                <!-- Filtres à gauche -->
+                <VBox styleClass="filters-panel">
+                    <Label text="Affiner votre recherche" styleClass="filter-title"/>
+
+                    <!-- Filtre Prix -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Budget par nuit" styleClass="filter-subtitle"/>
+                        <Slider fx:id="priceSlider" min="0" max="1000" value="500" 
+                                showTickLabels="true" showTickMarks="true" 
+                                majorTickUnit="200" blockIncrement="50"/>
+                        <HBox alignment="CENTER">
+                            <Label fx:id="priceLabel" text="500 DT" styleClass="price-label"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Filtre Étoiles -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Catégorie d'hôtel" styleClass="filter-subtitle"/>
+                        <HBox styleClass="stars-box">
+                            <ToggleButton fx:id="stars5" text="5★" styleClass="star-toggle" selected="true"/>
+                            <ToggleButton fx:id="stars4" text="4★" styleClass="star-toggle" selected="true"/>
+                            <ToggleButton fx:id="stars3" text="3★" styleClass="star-toggle" selected="true"/>
+                            <ToggleButton fx:id="stars2" text="2★" styleClass="star-toggle" selected="true"/>
+                            <ToggleButton fx:id="stars1" text="1★" styleClass="star-toggle" selected="true"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Filtre Équipements -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Équipements" styleClass="filter-subtitle"/>
+                        <CheckBox fx:id="hasPool" text="Piscine" styleClass="amenity-checkbox"/>
+                        <CheckBox fx:id="hasWifi" text="Wi-Fi gratuit" styleClass="amenity-checkbox"/>
+                        <CheckBox fx:id="hasRestaurant" text="Restaurant" styleClass="amenity-checkbox"/>
+                        <CheckBox fx:id="hasSpa" text="Spa" styleClass="amenity-checkbox"/>
+                        <CheckBox fx:id="hasFitnessCenter" text="Salle de sport" styleClass="amenity-checkbox"/>
+                        <CheckBox fx:id="hasBeachAccess" text="Accès plage" styleClass="amenity-checkbox"/>
+                        <CheckBox fx:id="hasParking" text="Parking" styleClass="amenity-checkbox"/>
+                    </VBox>
+                    
+                    <Button fx:id="resetFiltersButton" text="Réinitialiser les filtres" styleClass="reset-button"/>
+                </VBox>
+
+                <!-- Résultats à droite -->
+                <VBox styleClass="results-container" HBox.hgrow="ALWAYS">
+                    <HBox styleClass="results-header">
+                        <Label fx:id="resultsCount" text="0 hôtels trouvés" styleClass="results-count"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="sortCombo" promptText="Trier par" styleClass="sort-combo">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Prix (croissant)"/>
+                                    <String fx:value="Prix (décroissant)"/>
+                                    <String fx:value="Étoiles (croissant)"/>
+                                    <String fx:value="Étoiles (décroissant)"/>
+                                    <String fx:value="Popularité"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+                    <ScrollPane fitToWidth="true" styleClass="results-scrollpane" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="hotelCardsContainer" styleClass="hotel-cards" spacing="15"/>
+                    </ScrollPane>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane> 

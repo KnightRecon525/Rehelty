@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.Controller.BusCardController"
+      styleClass="bus-card"
+      spacing="10"
+      maxWidth="350">
+    
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Ligne" styleClass="card-label"/>
+        <Label fx:id="numeroLigneLabel" styleClass="card-value"/>
+    </HBox>
+
+    <VBox spacing="5">
+        <HBox spacing="10">
+            <Label text="De:" styleClass="card-label"/>
+            <Label fx:id="departLabel" styleClass="card-value"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="À:" styleClass="card-label"/>
+            <Label fx:id="arriveeLabel" styleClass="card-value"/>
+        </HBox>
+    </VBox>
+
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox>
+            <Label text="Horaire" styleClass="card-label"/>
+            <Label fx:id="horaireLabel" styleClass="card-value"/>
+        </VBox>
+        <VBox>
+            <Label text="Places disponibles" styleClass="card-label"/>
+            <Label fx:id="placesLabel" styleClass="card-value"/>
+        </VBox>
+    </HBox>
+
+    <Button fx:id="reserverButton" text="Réserver" 
+            styleClass="reserver-button" 
+            onAction="#handleReservation"
+            maxWidth="Infinity"/>
+</VBox> 

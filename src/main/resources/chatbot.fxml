@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.Controller.ChatbotController"
+            style="-fx-background-color: #ecf0f1;">
+
+    <!-- En-tête -->
+    <top>
+        <VBox>
+            <HBox style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+                <Label text="Assistant Virtuel - Rehelty"
+                       style="-fx-text-fill: white; -fx-font-size: 18pt; -fx-font-weight: bold;"/>
+            </HBox>
+            
+            <!-- Bouton de retour -->
+            <HBox style="-fx-padding: 10; -fx-background-color: #f4f4f4;">
+                <Button fx:id="btnRetour" text="Retour aux réservations" 
+                        style="-fx-background-color: #3498db; -fx-text-fill: white;"
+                        onAction="#navigateToReservationBus"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Zone principale -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <!-- Historique de chat -->
+            <TextArea fx:id="chatArea"
+                      editable="false"
+                      wrapText="true"
+                      style="-fx-font-size: 14px; -fx-border-color: #bdc3c7;"
+                      prefHeight="400"/>
+
+            <!-- Zone de saisie -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="inputField"
+                           promptText="Posez votre question sur les voyages..."
+                           style="-fx-font-size: 14px; -fx-pref-width: 400px;"
+                           HBox.hgrow="ALWAYS"/>
+                <Button text="Envoyer"
+                        fx:id="sendButton"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"
+                        onAction="#handleSendMessage"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 10; -fx-alignment: CENTER;">
+            <Label text="© 2025 Rehelty - Tous droits réservés"
+                   style="-fx-text-fill: white;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "agencevoyagechatbot-rdba",
+  "private_key_id": "cb9101072f1bd8b59b7b0ed43c11ba2d2df66618",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCbWrh/T/UxJlGU\npQYiWvZ/laDQAiF4me9vnz9woT89XItmfNUGhKuTB10p5naYJgclaQmXzdAYyF0I\nNj/1XFoqd08vlo/dvxMMwhlgpUf7e/D5O8CgFCbJ0uj96vDlDOVPQtr2mxOfD64s\n13ujOZCAyVrS31WOjWSFj+0BmsUmv62wVGLnEMCzipEXYrDsGH40mQ+9XYkmd/A5\n50JWncBRoxvFvVpC5LhvM1BMB74tdmhKhhfRtTevuyeUr6DP5x9hv3jwzl+/2kzl\nCsocZpuKBbGEI9ZbV74CALwhJCuAxT+yIauT+KkVmmkXdQloenmBcEpfJxLdmZZP\nrvyJ87hPAgMBAAECggEAQBW31tjKedhnPcynT6O7XF0CZdwDJ6dEdIS6HEF//1V+\nMaxcCeDPkAqxHTgzAsdpGj8OlH7zkU2RxvHuB05t6WenFCflN+F6v8APzOTRYUW6\n3W0PJFm7uHSW5Su17J6Zt00KW0EUYoCK5neLSoVT/TRSkXtMZU4hQdFhwNAx9K3n\npdkDfQU1sUimoI6P9RKqMxQrqZqEre1lyHwr/4wKiK4fT8NDk0RmenCeXThApIT9\nHcj5r8BKXD6A2zfLmoNoBBrRYCMDPrxmaCzIbNXhWbqwDeGfO2C2yVqVc/e5VvMX\n5O57CtKzN2xFXlUwVZ4Eyv1i0Za3ebwjZazCqKzLCQKBgQDM80sCnRcxeEdChhX1\npCjoZTAZ5b5YmsQ7zuaMY55zTIzDPFf16lyvuys2dDWR5KVyRNqDJfeuiJ/7x70d\nkYgQlcB1Zcc+VjjVAUtnGono/6MMvU2owu3cfeQldXCCNwKsmpZoJi5aWWQXC26e\ncvO10DuxyLOusji2ovPaCMByhwKBgQDCDO2jGscOqTkNapA9GHDn7SZa6nWfAHfb\nNKdX9qlbIcOKeX3USa8B9TQouv6972Z+17gdHiZQO2LYCX0F48hKb1b+ejYXHfba\nNaMTu7SOEXYBgA+Q8+5Sp9TXQ/8Gcj4HRE/Ki2rsDu/T4XR1vLFNPo7WGd3SYRoU\nUk+lCTbV+QKBgQCbhjPxs8uZ2rAYpy+azAvO7pplzJV5H1iyGfuRpTbkP77BmNUW\n49WZ9OqB1AWixGNYJy+6PeGKLFta8ONtwLYD/9+gNq/PehZ+bREPGHB2wyaz0CNS\nYTmnDFFIq6nI5n29BUIFnpOmNBdj9WToEEsoOPBTpP3VH6Ex1s49Mk73mQKBgCPf\n5/8DcFGRj26fiNMCtbzq5vBf8CbZG093SIjGnUCv2Uq8czrP9H7UKjRtfbL3k2dX\n0j3v2P10PS3bczWnitvYAalCRsW3UG+/AssfJJ4vNDXKyxXtQt4dEQhLFdbHQBhv\n1KCJbdb+W/A7+h/aJp01N4r1dUDzmrKvFPJZ5b1hAoGBAIbhZsBmPv2/cTX2R9E7\nCG3tOOnj6xoBF6QPVshjr0ScnWCAS0/bU7kKijTSzzj9Vt2fYBD8LPii5YNVuNEV\nPrHVNRir8QtP3p/AKpAJqzP1KDYcFspvubWnxMlSLpT3VGJBK8JZeIFBMjIUGDqz\nyjixsRq/g3E3dxkRWLqJG+Sa\n-----END PRIVATE KEY-----\n",
+  "client_email": "dialogflow-service-account-206@agencevoyagechatbot-rdba.iam.gserviceaccount.com",
+  "client_id": "112576754572767235040",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-service-account-206%40agencevoyagechatbot-rdba.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

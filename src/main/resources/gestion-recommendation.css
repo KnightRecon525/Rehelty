@@ -1,0 +1,199 @@
+/* Couleurs principales */
+.root {
+    -fx-primary-color: #003580; /* Bleu Booking */
+    -fx-secondary-color: #0071c2; /* Bleu clair */
+    -fx-accent-color: #febb02;   /* Jaune Booking */
+    -fx-light-gray: #f5f5f5;
+    -fx-dark-gray: #333333;
+}
+
+/* En-tête */
+.header-box {
+    -fx-background-color: -fx-primary-color;
+    -fx-padding: 15 30 15 30;
+}
+
+.header-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+}
+
+.header-button:hover {
+    -fx-text-fill: -fx-accent-color;
+}
+
+.header-button.selected {
+    -fx-font-weight: bold;
+    -fx-underline: true;
+}
+
+/* Conteneur principal */
+.main-container {
+    -fx-padding: 20 30 30 30;
+    -fx-background-color: -fx-light-gray;
+}
+
+.search-container {
+    -fx-background-color: -fx-accent-color;
+    -fx-padding: 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.search-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-dark-gray;
+}
+
+.search-box {
+    -fx-padding: 10 0 0 0;
+}
+
+.search-field-container {
+    -fx-spacing: 5;
+}
+
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.search-field, .date-picker, .combo-box {
+    -fx-pref-height: 40px;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-border-color: #cccccc;
+    -fx-background-color: white;
+}
+
+.search-button {
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 120px;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-cursor: hand;
+}
+
+.search-button:hover {
+    -fx-background-color: #0060a0;
+}
+
+/* Contenu principal */
+.content-container {
+    -fx-padding: 10 0 0 0;
+}
+
+/* Panel des filtres */
+.filters-panel {
+    -fx-padding: 15;
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-pref-width: 250px;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary-color;
+}
+
+.filter-group {
+    -fx-spacing: 8;
+    -fx-padding: 0 0 15 0;
+    -fx-border-color: #eeeeee;
+    -fx-border-width: 0 0 1 0;
+}
+
+.filter-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.filter-checkbox {
+    -fx-font-size: 13px;
+}
+
+.budget-field {
+    -fx-pref-width: 70px;
+}
+
+.budget-slider .track {
+    -fx-background-color: #e0e0e0;
+}
+
+.budget-slider .thumb {
+    -fx-background-color: -fx-secondary-color;
+}
+
+.rating-button {
+    -fx-background-color: white;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-radius: 3;
+    -fx-text-fill: -fx-secondary-color;
+    -fx-font-weight: bold;
+    -fx-pref-width: 50px;
+}
+
+.rating-button.selected {
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+}
+
+/* Résultats */
+.results-container {
+    -fx-padding: 0 0 0 10;
+    -fx-spacing: 15;
+}
+
+.results-table {
+    -fx-background-color: white;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+}
+
+.table-column {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+}
+
+/* Boutons d'action */
+.action-buttons {
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.action-button {
+    -fx-background-color: white;
+    -fx-text-fill: -fx-secondary-color;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #f0f8ff;
+}

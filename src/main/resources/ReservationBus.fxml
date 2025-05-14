@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@styles.css"
+            fx:controller="tn.esprit.Controller.RecherchecardviewController">
+
+    <top>
+        <VBox spacing="20">
+            <HBox styleClass="header-box" alignment="CENTER">
+                <Label text="Réservation de Bus" styleClass="header-title"/>
+            </HBox>
+
+            <HBox styleClass="search-box" spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="20" bottom="10" left="20"/>
+                </padding>
+
+                <ComboBox fx:id="cbDepart" promptText="Départ" styleClass="search-field"/>
+                <ComboBox fx:id="cbArrivee" promptText="Destination" styleClass="search-field"/>
+                <DatePicker fx:id="dpDate" promptText="Date" styleClass="search-field"/>
+                <Button text="Rechercher" styleClass="search-button" onAction="#rechercherBus"/>
+            </HBox>
+            
+            <!-- Boutons de navigation -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets left="20" bottom="10"/>
+                </padding>
+                <Button fx:id="btnHome" text="Retour à l'accueil" styleClass="nav-button" onAction="#navigateToHome"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnChatbot" text="Assistance virtuelle" styleClass="nav-button" onAction="#navigateToChatbot"/>
+                <padding>
+                    <Insets right="20"/>
+                </padding>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="card-scroll-pane">
+            <FlowPane fx:id="cardContainer" styleClass="card-container" hgap="20" vgap="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+            </FlowPane>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox styleClass="footer-box" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label fx:id="lblMessage" styleClass="footer-message"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

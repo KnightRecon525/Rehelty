@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@gestion-recommendation.css">
+
+    <!-- En-tête (Bleu Booking) -->
+    <top>
+        <HBox styleClass="header-box" alignment="CENTER_LEFT" spacing="20">
+            <ImageView fitWidth="150" fitHeight="40" preserveRatio="true">
+                <Image url="https://cf.bstatic.com/static/img/tfl/group_logos/logo_booking/27c8d1832de6a3123b6ee45b59ae2f81b0d9d0d0.png" />
+            </ImageView>
+
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Button text="Hôtels" styleClass="header-button selected"/>
+                <Button text="Vols" styleClass="header-button"/>
+                <Button text="Locations" styleClass="header-button"/>
+                <Button text="Activités" styleClass="header-button"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="€ EUR" styleClass="header-button"/>
+            <Button text="Aide" styleClass="header-button"/>
+            <Button text="Inscription" styleClass="header-button"/>
+            <Button text="Connexion" styleClass="header-button"/>
+        </HBox>
+    </top>
+
+    <!-- Barre de recherche -->
+    <center>
+        <VBox styleClass="main-container" spacing="20">
+            <!-- Barre de recherche -->
+            <VBox styleClass="search-container">
+                <Label text="Trouvez des recommandations personnalisées" styleClass="search-title"/>
+
+                <HBox styleClass="search-box" spacing="10">
+                    <!-- Destination -->
+                    <VBox styleClass="search-field-container">
+                        <Label text="Destination" styleClass="field-label"/>
+                        <TextField promptText="Ville, région ou hôtel" styleClass="search-field"/>
+                    </VBox>
+
+                    <!-- Dates -->
+                    <VBox styleClass="search-field-container">
+                        <Label text="Dates" styleClass="field-label"/>
+                        <HBox spacing="5">
+                            <DatePicker promptText="Arrivée" styleClass="date-picker"/>
+                            <DatePicker promptText="Départ" styleClass="date-picker"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Voyageurs -->
+                    <VBox styleClass="search-field-container">
+                        <Label text="Voyageurs" styleClass="field-label"/>
+                        <ComboBox promptText="1 adulte" styleClass="combo-box">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="1 adulte"/>
+                                    <String fx:value="2 adultes"/>
+                                    <String fx:value="Famille"/>
+                                    <String fx:value="Groupe"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+
+                    <!-- Bouton Rechercher -->
+                    <Button text="Rechercher" styleClass="search-button"/>
+                </HBox>
+            </VBox>
+
+            <!-- Contenu principal -->
+            <HBox styleClass="content-container" spacing="20">
+                <!-- Filtres à gauche -->
+                <VBox styleClass="filters-panel" spacing="15">
+                    <Label text="Recommandations personnalisées" styleClass="section-title"/>
+
+                    <!-- Filtre Préférences -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Vos préférences" styleClass="filter-title"/>
+                        <CheckBox text="Proche des transports" styleClass="filter-checkbox"/>
+                        <CheckBox text="Centre-ville" styleClass="filter-checkbox"/>
+                        <CheckBox text="Bord de mer" styleClass="filter-checkbox"/>
+                        <CheckBox text="Proche des sites touristiques" styleClass="filter-checkbox"/>
+                    </VBox>
+
+                    <!-- Filtre Budget -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Budget par nuit (€)" styleClass="filter-title"/>
+                        <HBox spacing="10" alignment="CENTER">
+                            <TextField promptText="Min" styleClass="budget-field"/>
+                            <Label text="à"/>
+                            <TextField promptText="Max" styleClass="budget-field"/>
+                        </HBox>
+                        <Slider min="0" max="500" value="200" showTickLabels="true" showTickMarks="true"
+                                majorTickUnit="100" minorTickCount="4" styleClass="budget-slider"/>
+                    </VBox>
+
+                    <!-- Filtre Équipements -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Équipements" styleClass="filter-title"/>
+                        <CheckBox text="Piscine" styleClass="filter-checkbox"/>
+                        <CheckBox text="Petit-déjeuner inclus" styleClass="filter-checkbox"/>
+                        <CheckBox text="Wi-Fi gratuit" styleClass="filter-checkbox"/>
+                        <CheckBox text="Parking" styleClass="filter-checkbox"/>
+                        <CheckBox text="Climatisation" styleClass="filter-checkbox"/>
+                    </VBox>
+
+                    <!-- Filtre Note -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Note minimale" styleClass="filter-title"/>
+                        <HBox spacing="5" alignment="CENTER">
+                            <Button text="7+" styleClass="rating-button selected"/>
+                            <Button text="8+" styleClass="rating-button"/>
+                            <Button text="9+" styleClass="rating-button"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Résultats à droite -->
+                <VBox styleClass="results-container" spacing="10">
+                    <Label text="Nos recommandations pour vous" styleClass="section-title"/>
+
+                    <TableView styleClass="results-table">
+                        <columns>
+                            <TableColumn text="Hôtel" styleClass="table-column" prefWidth="250"/>
+                            <TableColumn text="Localisation" styleClass="table-column" prefWidth="150"/>
+                            <TableColumn text="Prix/nuit" styleClass="table-column" prefWidth="100"/>
+                            <TableColumn text="Note" styleClass="table-column" prefWidth="80"/>
+                            <TableColumn text="Recommandation" styleClass="table-column" prefWidth="120"/>
+                        </columns>
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <!-- Exemple de données -->
+                                <HotelRecommendation
+                                        nom="Hôtel Paradis"
+                                        localisation="Paris, 1km du centre"
+                                        prix="€150"
+                                        note="8.7"
+                                        recommandation="90% match"/>
+                                <HotelRecommendation
+                                        nom="Residence Bleue"
+                                        localisation="Marseille, bord de mer"
+                                        prix="€210"
+                                        note="9.1"
+                                        recommandation="95% match"/>
+                            </FXCollections>
+                        </items>
+                    </TableView>
+
+                    <!-- Boutons d'action -->
+                    <HBox styleClass="action-buttons" spacing="10">
+                        <Button text="Exporter les résultats" styleClass="action-button"/>
+                        <Button text="Sauvegarder recherche" styleClass="action-button"/>
+                        <Button text="Partager" styleClass="action-button"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.image.*?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.Controller.RechercheController"
+            stylesheets="@styles.css">
+
+    <!-- En-tête (Bleu Booking) -->
+    <top>
+        <VBox>
+            <HBox styleClass="header-box" alignment="CENTER">
+                <Label text="Trouvez votre hôtel idéal" styleClass="header-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnHome" text="Retour à l'accueil" styleClass="nav-button" onAction="#navigateToHome"/>
+                <padding>
+                    <Insets right="20"/>
+                </padding>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Barre de recherche -->
+    <center>
+        <VBox styleClass="main-container">
+            <HBox styleClass="search-box">
+                <!-- Destination -->
+                <TextField fx:id="searchField" promptText="Où allez-vous ?" styleClass="search-field"/>
+
+                <!-- Dates -->
+                <DatePicker fx:id="checkInDate" promptText="Arrivée"/>
+                <DatePicker fx:id="checkOutDate" promptText="Départ"/>
+
+                <!-- Voyageurs -->
+                <ComboBox fx:id="guestsCombo" promptText="Voyageurs">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="1 adulte"/>
+                            <String fx:value="2 adultes"/>
+                            <String fx:value="Famille"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <!-- Bouton Rechercher -->
+                <Button fx:id="searchButton" text="Rechercher" styleClass="search-button" onAction="#handleSearch"/>
+            </HBox>
+
+            <!-- Contenu principal -->
+            <HBox styleClass="content-container">
+                <!-- Filtres à gauche -->
+                <VBox styleClass="filters-panel">
+                    <Label text="Filtrer par :" styleClass="filter-title"/>
+
+                    <!-- Filtre Prix -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Prix maximum par nuit"/>
+                        <Slider fx:id="priceSlider" min="0" max="1000" value="1000" 
+                                showTickLabels="true" showTickMarks="true" 
+                                majorTickUnit="200" blockIncrement="50"/>
+                        <HBox spacing="5" alignment="CENTER_LEFT">
+                            <Label text="0 DT" styleClass="small-text"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="priceLabel" text="1000 DT" styleClass="price-label"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="1000 DT" styleClass="small-text"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Filtre Étoiles -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Étoiles"/>
+                        <CheckBox fx:id="stars5" text="5 étoiles" selected="true"/>
+                        <CheckBox fx:id="stars4" text="4 étoiles" selected="true"/>
+                        <CheckBox fx:id="stars3" text="3 étoiles" selected="true"/>
+                    </VBox>
+
+                    <!-- Filtre Équipements -->
+                    <VBox styleClass="filter-group">
+                        <Label text="Équipements"/>
+                        <CheckBox fx:id="hasPool" text="Piscine"/>
+                        <CheckBox fx:id="hasWifi" text="Wi-Fi gratuit"/>
+                        <CheckBox fx:id="hasRestaurant" text="Restaurant"/>
+                        <CheckBox fx:id="hasSpa" text="Spa"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Résultats à droite -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="hotelCardsContainer" styleClass="hotel-cards"/>
+                </ScrollPane>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

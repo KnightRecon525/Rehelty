@@ -1,0 +1,21 @@
+/* src/main/resources/chatbot.css */
+.root {
+    -fx-font-family: 'Arial';
+}
+
+#chatArea {
+    -fx-font-size: 14px;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+}

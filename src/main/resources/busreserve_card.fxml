@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.Controller.BusCardviewController"
+      styleClass="bus-card"
+      spacing="10"
+      alignment="CENTER_LEFT"
+      prefWidth="280"
+      maxWidth="280"
+      padding="15">
+
+    <Label fx:id="lblRoute" styleClass="route-label"/>
+    <Label fx:id="lblTime" styleClass="details-label"/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label fx:id="lblSeats" styleClass="details-label"/>
+        <Label fx:id="lblPrice" styleClass="price-label"/>
+    </HBox>
+    <Button fx:id="btnReserve" text="Réserver" styleClass="reserve-button"/>
+</VBox>

@@ -1,0 +1,130 @@
+/* Effets de carte avancés */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #ecf0f1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+    -fx-transition: all 0.3s;
+}
+
+.card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-translate-y: -5;
+}
+
+.card-title {
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.card-detail {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 11pt;
+}
+
+/* Couleurs des statuts */
+.available {
+    -fx-text-fill: #27ae60;
+}
+
+.warning {
+    -fx-text-fill: #f39c12;
+}
+
+.critical {
+    -fx-text-fill: #e74c3c;
+}
+
+.bus-card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-background-radius: 5;
+    -fx-padding: 15;
+    -fx-pref-width: 300;
+    -fx-min-width: 300;
+}
+
+.bus-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 4);
+    -fx-translate-y: -2;
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.price-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+.label-info {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.value-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Styles pour les boutons */
+.action-button {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.add-button {
+    -fx-background-color: #27ae60;
+}
+
+.edit-button {
+    -fx-background-color: #f39c12;
+}
+
+.delete-button {
+    -fx-background-color: #e74c3c;
+}
+
+.refresh-button {
+    -fx-background-color: #3498db;
+}
+
+.action-button:hover {
+    -fx-opacity: 0.9;
+}
+
+/* Style pour le ScrollPane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Style pour le FlowPane */
+.flow-pane {
+    -fx-background-color: transparent;
+}
+
+/* Style pour les champs de recherche */
+.text-field {
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+}
+
+.combo-box {
+    -fx-background-radius: 5;
+    -fx-padding: 7;
+}

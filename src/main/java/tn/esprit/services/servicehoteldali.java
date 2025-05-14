@@ -1,7 +1,8 @@
 package tn.esprit.services;
 
 import tn.esprit.interfaces.IService;
-import tn.esprit.models.Hotel;
+import tn.esprit.models.Hoteldali;
+import tn.esprit.models.Hoteldali;
 import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
@@ -16,39 +17,39 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public class ServiceHotel implements IService<Hotel> {
+public class servicehoteldali implements IService<Hoteldali> {
 
     private Connection cnx;
 
-    public ServiceHotel() {
+    public servicehoteldali() {
         cnx = MyDataBase.getInstance().getCnx();
     }
 
     @Override
-    public void add(Hotel hotel) {
+    public void add(Hoteldali hotel) {
         try {
             // Vérifier si la colonne imageUrl existe
             boolean hasImageUrlColumn = checkColumnExists("imageUrl");
             boolean hasImageUnderscoreUrlColumn = checkColumnExists("image_url");
-            
+
             // Construction de la requête SQL en fonction des colonnes disponibles
             String query;
             if (hasImageUrlColumn) {
                 query = "INSERT INTO hotel (nom, localisation, description, nbrChambres, prixParNuite, etoiles, equipements, imageUrl, note) " +
-                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             } else if (hasImageUnderscoreUrlColumn) {
                 query = "INSERT INTO hotel (nom, localisation, description, nbrChambres, prixParNuite, etoiles, equipements, image_url, note) " +
-                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             } else {
                 // Cas où aucune colonne d'image n'existe, on l'ajoute
                 Statement stmt = cnx.createStatement();
                 stmt.execute("ALTER TABLE hotel ADD COLUMN imageUrl VARCHAR(1000)");
                 System.out.println("Colonne imageUrl ajoutée à la table hotel");
-                
+
                 query = "INSERT INTO hotel (nom, localisation, description, nbrChambres, prixParNuite, etoiles, equipements, imageUrl, note) " +
-                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             }
-            
+
             PreparedStatement ps = cnx.prepareStatement(query);
             ps.setString(1, hotel.getNom());
             ps.setString(2, hotel.getLocalisation());
@@ -59,7 +60,7 @@ public class ServiceHotel implements IService<Hotel> {
             ps.setString(7, hotel.getEquipements());
             ps.setString(8, hotel.getImageUrl());
             ps.setFloat(9, hotel.getNote());
-            
+
             ps.executeUpdate();
             System.out.println("Hôtel ajouté avec succès: " + hotel.getNom());
         } catch (SQLException e) {
@@ -69,18 +70,18 @@ public class ServiceHotel implements IService<Hotel> {
     }
 
     @Override
-    public List<Hotel> getAll() {
-        List<Hotel> hotels = new ArrayList<>();
-        
+    public List<Hoteldali> getAll() {
+        List<Hoteldali> hotels = new ArrayList<>();
+
         try {
             // Vérifier la connexion à la base de données
             if (cnx == null || cnx.isClosed()) {
                 System.out.println("Connexion à la base de données perdue, tentative de reconnexion...");
                 cnx = MyDataBase.getInstance().getCnx();
             }
-            
+
             Statement stmt = cnx.createStatement();
-            
+
             // Vérifier si la table est vide, si oui, charger les données
             ResultSet countRs = stmt.executeQuery("SELECT COUNT(*) FROM hotel");
             int count = 0;
@@ -88,24 +89,24 @@ public class ServiceHotel implements IService<Hotel> {
                 count = countRs.getInt(1);
             }
             System.out.println("Nombre d'hôtels dans la base de données: " + count);
-            
+
             if (count == 0) {
                 System.out.println("🔄 La table hôtel est vide, ajout d'hôtels...");
-                
+
                 // Ajouter plusieurs hôtels manuellement
                 addSampleHotels();
             }
-            
+
             // Vérifier si les colonnes existent
             boolean hasImageUrlColumn = checkColumnExists("imageUrl");
             boolean hasImageUnderscoreUrlColumn = checkColumnExists("image_url");
-            
+
             // Charger tous les hôtels
             String query = "SELECT * FROM hotel ORDER BY nom";
             ResultSet rs = stmt.executeQuery(query);
-            
+
             while (rs.next()) {
-                Hotel hotel = new Hotel();
+                Hoteldali hotel = new Hoteldali();
                 hotel.setId(rs.getInt("id"));
                 hotel.setNom(rs.getString("nom"));
                 hotel.setLocalisation(rs.getString("localisation"));
@@ -113,11 +114,11 @@ public class ServiceHotel implements IService<Hotel> {
                 hotel.setNbrChambres(rs.getInt("nbrChambres"));
                 hotel.setPrixParNuite(rs.getFloat("prixParNuite"));
                 hotel.setEtoiles(rs.getInt("etoiles"));
-                
+
                 // Gestion de la colonne equipements
                 String equipements = rs.getString("equipements");
                 hotel.setEquipements(equipements != null ? equipements : "");
-                
+
                 // Gestion des colonnes imageUrl ou image_url
                 String imageUrl = null;
                 if (hasImageUrlColumn) {
@@ -127,7 +128,7 @@ public class ServiceHotel implements IService<Hotel> {
                         System.out.println("Erreur lors de la lecture de imageUrl: " + e.getMessage());
                     }
                 }
-                
+
                 if (imageUrl == null && hasImageUnderscoreUrlColumn) {
                     try {
                         imageUrl = rs.getString("image_url");
@@ -135,48 +136,48 @@ public class ServiceHotel implements IService<Hotel> {
                         System.out.println("Erreur lors de la lecture de image_url: " + e.getMessage());
                     }
                 }
-                
+
                 hotel.setImageUrl(imageUrl);
-                
+
                 // Gestion de la colonne note
                 hotel.setNote(rs.getFloat("note"));
-                
+
                 hotels.add(hotel);
                 System.out.println("✅ Chargé hôtel: " + hotel.getNom() + " (" + hotel.getLocalisation() + ")");
             }
-            
+
             System.out.println("🏁 Total: " + hotels.size() + " hôtels chargés");
-            
+
             // Si aucun hôtel n'a été chargé, ajouter au moins un hôtel manuellement
             if (hotels.isEmpty()) {
-                Hotel hotel = createDefaultHotel();
+                Hoteldali hotel = createDefaultHotel();
                 hotels.add(hotel);
                 System.out.println("⚠️ Aucun hôtel chargé depuis la base, ajout d'un hôtel par défaut");
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("❌ Erreur SQL: " + ex.getMessage());
             ex.printStackTrace();
-            
+
             // En cas d'erreur, créer au moins un hôtel par défaut
-            Hotel hotel = createDefaultHotel();
+            Hoteldali hotel = createDefaultHotel();
             hotels.add(hotel);
         } catch (Exception e) {
             System.out.println("❌ Exception: " + e.getMessage());
             e.printStackTrace();
-            
+
             // En cas d'erreur, créer au moins un hôtel par défaut
-            Hotel hotel = createDefaultHotel();
+            Hoteldali hotel = createDefaultHotel();
             hotels.add(hotel);
         }
-        
+
         return hotels;
     }
 
     @Override
-    public void update(Hotel hotel) {
+    public void update(Hoteldali hotel) {
         String query = "UPDATE hotel SET nom=?, localisation=?, description=?, nbrChambres=?, " +
-                      "prixParNuite=?, etoiles=?, equipements=?, imageUrl=?, note=? WHERE id=?";
+                "prixParNuite=?, etoiles=?, equipements=?, imageUrl=?, note=? WHERE id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(query);
             ps.setString(1, hotel.getNom());
@@ -189,7 +190,7 @@ public class ServiceHotel implements IService<Hotel> {
             ps.setString(8, hotel.getImageUrl());
             ps.setFloat(9, hotel.getNote());
             ps.setInt(10, hotel.getId());
-            
+
             ps.executeUpdate();
             System.out.println("Hôtel mis à jour: " + hotel.getNom());
         } catch (SQLException e) {
@@ -199,7 +200,7 @@ public class ServiceHotel implements IService<Hotel> {
     }
 
     @Override
-    public void delete(Hotel hotel) {
+    public void delete(Hoteldali hotel) {
         String query = "DELETE FROM hotel WHERE id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(query);
@@ -212,21 +213,21 @@ public class ServiceHotel implements IService<Hotel> {
         }
     }
 
-    public List<Hotel> getByVille(String ville) {
-        List<Hotel> hotels = new ArrayList<>();
+    public List<Hoteldali> getByVille(String ville) {
+        List<Hoteldali> hotels = new ArrayList<>();
         String query = "SELECT * FROM hotel WHERE localisation = ?";
 
         try {
             // Vérifier si les colonnes existent
             boolean hasImageUrlColumn = checkColumnExists("imageUrl");
             boolean hasImageUnderscoreUrlColumn = checkColumnExists("image_url");
-            
+
             PreparedStatement ps = cnx.prepareStatement(query);
             ps.setString(1, ville);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Hotel h = new Hotel();
+                Hoteldali h = new Hoteldali();
                 h.setId(rs.getInt("id"));
                 h.setNom(rs.getString("nom"));
                 h.setLocalisation(rs.getString("localisation"));
@@ -235,7 +236,7 @@ public class ServiceHotel implements IService<Hotel> {
                 h.setPrixParNuite(rs.getFloat("prixParNuite"));
                 h.setEtoiles(rs.getInt("etoiles"));
                 h.setEquipements(rs.getString("equipements"));
-                
+
                 // Gestion des colonnes imageUrl ou image_url
                 String imageUrl = null;
                 if (hasImageUrlColumn) {
@@ -245,7 +246,7 @@ public class ServiceHotel implements IService<Hotel> {
                         System.out.println("Erreur lors de la lecture de imageUrl: " + e.getMessage());
                     }
                 }
-                
+
                 if (imageUrl == null && hasImageUnderscoreUrlColumn) {
                     try {
                         imageUrl = rs.getString("image_url");
@@ -253,7 +254,7 @@ public class ServiceHotel implements IService<Hotel> {
                         System.out.println("Erreur lors de la lecture de image_url: " + e.getMessage());
                     }
                 }
-                
+
                 h.setImageUrl(imageUrl);
                 h.setNote(rs.getFloat("note"));
                 hotels.add(h);
@@ -265,21 +266,21 @@ public class ServiceHotel implements IService<Hotel> {
         return hotels;
     }
 
-    public Hotel getByName(String nom) {
+    public Hoteldali getByName(String nom) {
         String query = "SELECT * FROM hotel WHERE nom = ?";
-        Hotel hotel = null;
+        Hoteldali hotel = null;
 
         try {
             // Vérifier si les colonnes existent
             boolean hasImageUrlColumn = checkColumnExists("imageUrl");
             boolean hasImageUnderscoreUrlColumn = checkColumnExists("image_url");
-            
+
             PreparedStatement ps = cnx.prepareStatement(query);
             ps.setString(1, nom);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                hotel = new Hotel();
+                hotel = new Hoteldali();
                 hotel.setId(rs.getInt("id"));
                 hotel.setNom(rs.getString("nom"));
                 hotel.setLocalisation(rs.getString("localisation"));
@@ -288,7 +289,7 @@ public class ServiceHotel implements IService<Hotel> {
                 hotel.setPrixParNuite(rs.getFloat("prixParNuite"));
                 hotel.setEtoiles(rs.getInt("etoiles"));
                 hotel.setEquipements(rs.getString("equipements"));
-                
+
                 // Gestion des colonnes imageUrl ou image_url
                 String imageUrl = null;
                 if (hasImageUrlColumn) {
@@ -298,7 +299,7 @@ public class ServiceHotel implements IService<Hotel> {
                         System.out.println("Erreur lors de la lecture de imageUrl: " + e.getMessage());
                     }
                 }
-                
+
                 if (imageUrl == null && hasImageUnderscoreUrlColumn) {
                     try {
                         imageUrl = rs.getString("image_url");
@@ -306,7 +307,7 @@ public class ServiceHotel implements IService<Hotel> {
                         System.out.println("Erreur lors de la lecture de image_url: " + e.getMessage());
                     }
                 }
-                
+
                 hotel.setImageUrl(imageUrl);
                 hotel.setNote(rs.getFloat("note"));
             }
@@ -321,8 +322,8 @@ public class ServiceHotel implements IService<Hotel> {
     /**
      * Crée un hôtel par défaut pour l'affichage
      */
-    private Hotel createDefaultHotel() {
-        Hotel hotel = new Hotel();
+    private Hoteldali createDefaultHotel() {
+        Hoteldali hotel = new Hoteldali();
         hotel.setId(1);
         hotel.setNom("Hôtel Le Paradis");
         hotel.setLocalisation("Tunis");
@@ -333,14 +334,14 @@ public class ServiceHotel implements IService<Hotel> {
         hotel.setEquipements("Piscine,Wi-Fi,Restaurant,Spa,Salle de sport");
         hotel.setImageUrl("/image/default-hotel.jpg");
         hotel.setNote(4.8f);
-        
+
         try {
             // Tenter d'ajouter cet hôtel à la base de données
             this.add(hotel);
         } catch (Exception e) {
             System.out.println("⚠️ Impossible d'ajouter l'hôtel par défaut à la base: " + e.getMessage());
         }
-        
+
         return hotel;
     }
 
@@ -350,11 +351,11 @@ public class ServiceHotel implements IService<Hotel> {
     private void addSampleHotels() {
         try {
             System.out.println("🏨 Ajout d'hôtels d'exemple à la base de données...");
-            
-            List<Hotel> sampleHotels = new ArrayList<>();
-            
+
+            List<Hoteldali> sampleHotels = new ArrayList<>();
+
             // Hôtel 1
-            Hotel hotel1 = new Hotel();
+            Hoteldali hotel1 = new Hoteldali();
             hotel1.setNom("Hôtel Dar El Jeld");
             hotel1.setLocalisation("Tunis");
             hotel1.setDescription("Un hôtel de luxe au cœur de la Médina");
@@ -365,9 +366,9 @@ public class ServiceHotel implements IService<Hotel> {
             hotel1.setImageUrl("/image/dareljeld.jpg");
             hotel1.setNote(4.8f);
             sampleHotels.add(hotel1);
-            
+
             // Hôtel 2
-            Hotel hotel2 = new Hotel();
+            Hoteldali hotel2 = new Hoteldali();
             hotel2.setNom("The Sindbad");
             hotel2.setLocalisation("Hammamet");
             hotel2.setDescription("Complexe de luxe en bord de mer");
@@ -378,9 +379,9 @@ public class ServiceHotel implements IService<Hotel> {
             hotel2.setImageUrl("/image/hammamet.jpg");
             hotel2.setNote(4.6f);
             sampleHotels.add(hotel2);
-            
+
             // Hôtel 3
-            Hotel hotel3 = new Hotel();
+            Hoteldali hotel3 = new Hoteldali();
             hotel3.setNom("Movenpick Resort & Marine Spa");
             hotel3.setLocalisation("Sousse");
             hotel3.setDescription("Luxe contemporain en bord de mer");
@@ -391,9 +392,9 @@ public class ServiceHotel implements IService<Hotel> {
             hotel3.setImageUrl("/image/sousse.webp");
             hotel3.setNote(4.7f);
             sampleHotels.add(hotel3);
-            
+
             // Hôtel 4
-            Hotel hotel4 = new Hotel();
+            Hoteldali hotel4 = new Hoteldali();
             hotel4.setNom("Radisson Blu Palace Resort");
             hotel4.setLocalisation("Djerba");
             hotel4.setDescription("Oasis de luxe sur la plage");
@@ -404,9 +405,9 @@ public class ServiceHotel implements IService<Hotel> {
             hotel4.setImageUrl("/image/djerba.jpg");
             hotel4.setNote(4.8f);
             sampleHotels.add(hotel4);
-            
+
             // Hôtel 5
-            Hotel hotel5 = new Hotel();
+            Hoteldali hotel5 = new Hoteldali();
             hotel5.setNom("Bizerta Resort");
             hotel5.setLocalisation("Bizerte");
             hotel5.setDescription("Vue panoramique sur la mer");
@@ -417,9 +418,9 @@ public class ServiceHotel implements IService<Hotel> {
             hotel5.setImageUrl("/image/bizerte.avif");
             hotel5.setNote(4.3f);
             sampleHotels.add(hotel5);
-            
+
             // Ajouter tous les hôtels à la base de données
-            for (Hotel hotel : sampleHotels) {
+            for (Hoteldali hotel : sampleHotels) {
                 try {
                     this.add(hotel);
                     System.out.println("✅ Ajouté: " + hotel.getNom());
@@ -427,9 +428,9 @@ public class ServiceHotel implements IService<Hotel> {
                     System.out.println("❌ Erreur lors de l'ajout de " + hotel.getNom() + ": " + e.getMessage());
                 }
             }
-            
+
             System.out.println("🏁 Fin de l'ajout des hôtels d'exemple");
-            
+
         } catch (Exception e) {
             System.out.println("❌ Erreur générale lors de l'ajout des hôtels d'exemple: " + e.getMessage());
             e.printStackTrace();

@@ -7,8 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import tn.esprit.models.Hotel;
-import tn.esprit.services.ServiceHotel;
+import tn.esprit.models.Hoteldali;
+import tn.esprit.models.Hoteldali;
+import tn.esprit.services.servicehoteldali;
 import tn.esprit.utils.NavigationUtils;
 
 import java.io.IOException;
@@ -37,14 +38,14 @@ public class RechercheController {
     @FXML private CheckBox hasSpa;
     @FXML private Button btnHome;
 
-    private ServiceHotel serviceHotel;
-    private List<Hotel> allHotels;
+    private servicehoteldali serviceHotel;
+    private List<Hoteldali> allHotels;
 
     @FXML
     public void initialize() {
         try {
             // Initialiser le service
-            serviceHotel = new ServiceHotel();
+            serviceHotel = new servicehoteldali();
             
             // Initialiser le combo des voyageurs
             guestsCombo.getItems().addAll("1 Personne", "2 Personnes", "3 Personnes", "4+ Personnes");
@@ -109,7 +110,7 @@ public class RechercheController {
         
         try {
             // Créer et afficher un hôtel de secours quoi qu'il arrive
-            Hotel emergencyHotel = new Hotel();
+            Hoteldali emergencyHotel = new Hoteldali();
             emergencyHotel.setId(1);
             emergencyHotel.setNom("Hôtel d'Urgence");
             emergencyHotel.setLocalisation("Application Rehelty");
@@ -121,7 +122,7 @@ public class RechercheController {
             emergencyHotel.setImageUrl("/image/default-hotel.jpg");
             emergencyHotel.setNote(5.0f);
             
-            List<Hotel> emergencyList = new ArrayList<>();
+            List<Hoteldali> emergencyList = new ArrayList<>();
             emergencyList.add(emergencyHotel);
             
             // Afficher directement cet hôtel
@@ -153,7 +154,7 @@ public class RechercheController {
             
             // Définir le slider au prix maximum
             float maxPrice = 0;
-            for (Hotel hotel : allHotels) {
+            for (Hoteldali hotel : allHotels) {
                 if (hotel.getPrixParNuite() > maxPrice) {
                     maxPrice = hotel.getPrixParNuite();
                 }
@@ -193,7 +194,7 @@ public class RechercheController {
                            ", Restaurant=" + hasRestaurant.isSelected() + ", Spa=" + hasSpa.isSelected());
 
         // Apply filters
-        List<Hotel> filteredHotels = allHotels.stream()
+        List<Hoteldali> filteredHotels = allHotels.stream()
             .filter(hotel -> {
                 // Debug log
                 System.out.println("Vérification hôtel: " + hotel.getNom() + ", Prix: " + hotel.getPrixParNuite() + ", Étoiles: " + hotel.getEtoiles());
@@ -280,7 +281,7 @@ public class RechercheController {
         displayHotels(filteredHotels);
     }
 
-    private void displayHotels(List<Hotel> hotels) {
+    private void displayHotels(List<Hoteldali> hotels) {
         // Vider le conteneur d'hôtels
         hotelCardsContainer.getChildren().clear();
         
@@ -297,7 +298,7 @@ public class RechercheController {
         int displayedCount = 0;
         
         // Créer une carte pour chaque hôtel
-        for (Hotel hotel : hotels) {
+        for (Hoteldali hotel : hotels) {
             try {
                 System.out.println("Traitement de l'hôtel: " + hotel.getNom() + ", Prix: " + hotel.getPrixParNuite() + ", Étoiles: " + hotel.getEtoiles());
                 

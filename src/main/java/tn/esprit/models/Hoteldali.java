@@ -1,6 +1,6 @@
 package tn.esprit.models;
 
-public class Hotel {
+public class Hoteldali {
     private int id;
     private String nom;
     private String localisation;
@@ -12,10 +12,10 @@ public class Hotel {
     private String imageUrl;
     private float note;
 
-    public Hotel() {}
+    public Hoteldali() {}
 
-    public Hotel(int id, String nom, String localisation, String description, int nbrChambres, 
-                float prixParNuite, int etoiles, String equipements, String imageUrl, float note) {
+    public Hoteldali(int id, String nom, String localisation, String description, int nbrChambres,
+                     float prixParNuite, int etoiles, String equipements, String imageUrl, float note) {
         this.id = id;
         this.nom = nom;
         this.localisation = localisation;
@@ -72,9 +72,9 @@ public class Hotel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        
-        Hotel hotel = (Hotel) o;
-        
+
+        Hoteldali hotel = (Hoteldali) o;
+
         // Two hotels are considered equal if they have the same name and location
         if (!nom.equals(hotel.nom)) return false;
         return localisation.equals(hotel.localisation);
